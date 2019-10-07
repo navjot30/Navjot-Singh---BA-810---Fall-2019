@@ -1,13 +1,12 @@
 // v = pi r square h/3
 
-function Cone(){
+function Cone(radius, height){
     let cone ={};
-    let radius = 0;
-    let height = 0;
+    cone.radius = radius;
+    cone.height = height;
 
-    cone.computeConeVol = function(radius,height){
-        var volume = 0;
-        return volume = (height/3)*(radius*radius)*(Math.PI);
+    Cone.computeVolume = function(){
+        return cone.height/3 * cone.radius**2 * Math.PI;
     }
     return cone;
 } 

@@ -1,12 +1,11 @@
 // v = 4/3 pi r cube
 
-function Sphere(){
+function Sphere(radius){
     let sphere ={};
-    let radius = 0;
+    sphere.radius = radius;
 
-    sphere.computeSphereVol = function(radius){
-        var volume = 0;
-        return volume = (4/3)*Math.PI*Math.pow(radius,3);
+    sphere.computeVolume = function(){
+         return (4/3)*Math.PI*Math.pow(sphere.radius,3);
         
     }
     return sphere;
