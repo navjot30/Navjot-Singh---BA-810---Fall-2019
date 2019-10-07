@@ -26,5 +26,5 @@ function Shape(){
         }
         return shape.totalVol(8,5,10);
     }
-    //console.log(Shape(8,5,10));
+    console.log(Shape());
     
