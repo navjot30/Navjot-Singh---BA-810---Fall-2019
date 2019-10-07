@@ -5,7 +5,7 @@ function Cone(radius, height){
     cone.radius = radius;
     cone.height = height;
 
-    Cone.computeVolume = function(){
+    cone.computeVolume = function(){
         return cone.height/3 * cone.radius**2 * Math.PI;
     }
     return cone;

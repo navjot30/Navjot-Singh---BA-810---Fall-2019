@@ -1,20 +1,20 @@
 function Shape(){
 
     let shape = [];
-    //shape.totalVolume = totalVolume;
   
-     
-    //console.log(shape2.computeConeVol(5,10));
-    
+    shape.addShape = function (newShape) {
+        shape.push(newShape);
+    }
+
     shape.volume = function () {
-        let totalVolume = [];
+        let totalVolume = 0;
         shape.forEach(item => {
-            totalVolume.push(item.computeVolume());
+            totalVolume = totalVolume + item.computeVolume();
         });
 
         return totalVolume;
-}
-return shape;
+    }
+    return shape;
 }
 let Sphere = require ('./sphere');
 let shape1 = new Sphere(8);
@@ -22,4 +22,8 @@ let shape1 = new Sphere(8);
 let Cone = require ('./cone');     
 let shape2 = new Cone(5,10);  
 
-    
+let shapes = Shape();
+shapes.addShape(shape1);
+shapes.addShape(shape2);
+
+console.log(shapes.volume());
