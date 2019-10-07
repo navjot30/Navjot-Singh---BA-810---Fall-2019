@@ -1,17 +1,21 @@
-function Shape(radiusOfSphere, radiusOfCone, heightOfCone){
+function Shape(){
 
     let shape = {};
+    /*
     shape.radiusOfCone = radiusOfCone;
     shape.radiusOfSphere = radiusOfSphere;
     shape.heightOfCone = heightOfCone;
-    let Sphere = require ('./sphere');
+    */
+    let radiusOfCone = 0;
+    let radiusOfSphere = 0;
+    let heightOfCone = 0;
     
+    let Sphere = require ('./sphere');
     let shape1 = new Sphere();
     
     //console.log(shape1.computeSphereVol(8));
     
-    let Cone = require ('./cone');
-       
+    let Cone = require ('./cone');     
     let shape2 = new Cone();   
     //console.log(shape2.computeConeVol(5,10));
     
@@ -20,7 +24,7 @@ function Shape(radiusOfSphere, radiusOfCone, heightOfCone){
         return totalVolume = shape1.computeSphereVol(radiusOfSphere) 
                            + shape2.computeConeVol(radiusOfCone, heightOfCone)
         }
-        return shape.totalVol();
+        return shape.totalVol(8,5,10);
     }
-    console.log(Shape(8,5,10));
+    //console.log(Shape(8,5,10));
     
