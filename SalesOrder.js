@@ -12,7 +12,7 @@ function SalesOrder(customer, salesTaxRate, items) {
     salesOrder.getValue = function() {
         totalValue = 0.0;
         salesOrder.items.forEach(item => {
-            totalValue = totalValue + ((item.price) * item.quantity);
+            totalValue = totalValue + item.getPrice();
         });
         return totalValue;
     }

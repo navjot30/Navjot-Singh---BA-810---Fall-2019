@@ -1,5 +1,5 @@
-//Create a module that represents a sales order item.  
-//It should have the properties, product, price and a function to return the value of the item.
+//Create a module that represents a sales order item.  It should have the 
+//properties, product, quantity, price and a function to return the value of the item (price * quantity).
 
 function SalesOrderItem(product, price, quantity) {
     let item = {};
@@ -8,7 +8,7 @@ function SalesOrderItem(product, price, quantity) {
     item.quantity = quantity;
 
     item.getPrice = function() {
-        return item.price;
+        return item.price * item.quantity;
     }
     return item;
 }
