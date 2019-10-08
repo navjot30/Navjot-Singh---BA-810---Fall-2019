@@ -3,8 +3,9 @@
 //of the items (sum the item price times quantity) and a function that returns 
 //total value (sum of the value of the items plus the sales tax).
 
-function SalesOrder(salesTaxRate, items) {
+function SalesOrder(customer, salesTaxRate, items) {
     salesOrder = {};
+    salesOrder.customer = customer;
     salesOrder.salesTaxRate = salesTaxRate;
     salesOrder.items = items;
 
@@ -12,7 +13,7 @@ function SalesOrder(salesTaxRate, items) {
         totalValue = 0.0;
         salesOrder.items.forEach(item => {
             totalValue = totalValue + ((item.price) * item.quantity);
-        })
+        });
         return totalValue;
     }
 
