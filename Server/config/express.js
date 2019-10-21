@@ -6,6 +6,16 @@ module.exports = function (app, config) {
     console.log('Request from ' + req.connection.remoteAddress);
     next();
   });  
+  //app.use(morgan('dev'));
+const express = require('express');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+extended: true
+}));
+app.use(bodyParser.json());
+
   app.use(express.static(config.root + '/public'));
 
   app.use(function (req, res) {
