@@ -10,7 +10,7 @@ module.exports = function (app, config) {
         res.status(200).json({ message: 'Got all users' });//remove after database stuff is added the got user with code that retrieve users from db 
 
     });
-    router.route('/users').post((req, res, next) => {
+    router.route('/todos').post((req, res, next) => {
         logger.log('info', 'Create user');
         res.status(201).json({ message: 'Created user' });
     });

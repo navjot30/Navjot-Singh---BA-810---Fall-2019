@@ -1,7 +1,10 @@
 'use strict'
 var express = require('express'),
     router = express.Router(),
-    logger = require('../../config/logger');
+    logger = require('../../config/logger'),
+    mongoose = require('mongoose'),
+    User = mongoose.model('User');
+
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
     router.route('/users').get((req, res, next) => {
@@ -10,10 +13,18 @@ module.exports = function (app, config) {
         res.status(200).json({ message: 'Got all users' });//remove after database stuff is added the got user with code that retrieve users from db 
 
     });
-    router.route('/users').post((req, res, next) => {
-        logger.log('info', 'Create user');
-        res.status(201).json({ message: 'Created user' });
-    });
+    router.route('/users').post((req, res, next) => {
+        logger.log('info','Create User');
+        var user = new User(req.body);
+        user.save()
+        .then(result => {
+            res.status(201).json(result);
+        })
+        .catch((err)=>{
+           return next(err);
+        });
+      })
+  
 
     router.route('/users/login').post((req, res, next) => {
         logger.log('info', '%s logging in', req.body.email);
