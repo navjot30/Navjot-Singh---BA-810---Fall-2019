@@ -4,7 +4,7 @@ var express = require('express'),
     logger = require('../../config/logger');
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
-    router.route('/users').get((req, res, next) => {
+    router.route('/todos').get((req, res, next) => {
         logger.log('info', 'Get all users');
 
         res.status(200).json({ message: 'Got all users' });//remove after database stuff is added the got user with code that retrieve users from db 

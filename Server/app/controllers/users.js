@@ -8,23 +8,33 @@ var express = require('express'),
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
     router.route('/users').get((req, res, next) => {
-        logger.log('info', 'Get all users');
-
-        res.status(200).json({ message: 'Got all users' });//remove after database stuff is added the got user with code that retrieve users from db 
-
+        logger.log('info', 'Get all users');
+        var query = User.find()
+            .sort(req.query.order)
+            .exec()
+            .then(result => {
+                if (result && result.length) {
+                    res.status(200).json(result);
+                } else {
+                    res.status(404).json({ message: "No users" });
+                }
+            })
+            .catch(err => {
+                return next(err);
+            });
     });
-    router.route('/users').post((req, res, next) => {
-        logger.log('info','Create User');
+    router.route('/users').post((req, res, next) => {
+        logger.log('info', 'Create User');
         var user = new User(req.body);
         user.save()
-        .then(result => {
-            res.status(201).json(result);
-        })
-        .catch((err)=>{
-           return next(err);
-        });
-      })
-  
+            .then(result => {
+                res.status(201).json(result);
+            })
+            .catch((err) => {
+                return next(err);
+            });
+    })
+
 
     router.route('/users/login').post((req, res, next) => {
         logger.log('info', '%s logging in', req.body.email);
