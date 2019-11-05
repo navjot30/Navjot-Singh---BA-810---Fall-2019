@@ -35,3 +35,9 @@
 {"level":"info","message":"Get all users"}
 {"level":"info","message":"Get user %s"}
 {"level":"info","message":"Get user %s"}
+{"level":"info","message":"Loading Mongoose functionality"}
+{"level":"info","message":"Create User"}
+{"level":"info","message":"Create User"}
+{"level":"info","message":"Get all users"}
+{"level":"info","message":"Get user %s"}
+{"level":"info","message":"Get user %s"}
