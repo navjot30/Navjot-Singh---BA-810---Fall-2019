@@ -81,7 +81,27 @@ module.exports = function (app, config) {
             });
     })
 
-
+       router.put('/users/password/:id', function (req, res, next) {
+                logger.log('info','Update user ' + req.params.id);
+                User.findById(req.params.id)
+                    .exec()
+                    .then(function (user) {
+                        if (req.body.password !== undefined) {
+                            user.password = req.body.password;
+                        }
+                        user.save()
+                            .then(function (user) {
+                                res.status(200).json(user);
+                            })
+                            .catch(function (err) {
+                                return next(err);
+                            });
+                    })
+                    .catch(function (err) {
+                        return next(err);
+                    });
+            });
+        
     /*  
   router.route('/users/:id').get((req, res, next) => {
       logger.log('info', 'Get user %s', req.params.id);

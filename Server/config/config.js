@@ -13,12 +13,14 @@ var config = {
         root: rootPath,
         app: { name: 'ThingsToDo' },
         port: 4000,
+        db: 'mongodb://127.0.0.1/todo-test'
         },
         
     production: {
         root: rootPath,
-        app: { name: 'UCCSS' },
+        app: { name: 'TodoToday' },
         port: 80,
+        db: 'mongodb://127.0.0.1/todo'
     }
 };
  

@@ -55,7 +55,10 @@ module.exports = function (app, config) {
 
     app.use(function (err, req, res, next) {
 
-        console.error(err.stack);
+        if(process.env.NODE_ENV !== 'test') {
+            console.error(err.stack);
+        }
+    
         res.type('text/plan');
         res.status(500);
         res.send('500 Sever Error');

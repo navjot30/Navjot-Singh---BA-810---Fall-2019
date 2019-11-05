@@ -1,3 +1,4 @@
+
 'use strict'
 var express = require('express'),
     router = express.Router(),
@@ -25,7 +26,7 @@ module.exports = function (app, config) {
     });
 
 
-    router.route('/users/:id').get((req, res, next) => {
+    router.route('/todos/:id').get((req, res, next) => {
         logger.log('info', 'Get user %s', req.params.id);
 
         res.status(200).json({ id: req.params.id });
