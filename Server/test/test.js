@@ -215,7 +215,7 @@ describe('Widget', () => {
                 });
         });
     });
-    it('it should UPDATE a user', done => {
+    it('it should UPDATE a widget', done => {
         var widget = new Widget({
             foo: 'Widget'
         });
