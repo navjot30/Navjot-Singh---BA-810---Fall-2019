@@ -3,11 +3,18 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    passportService = require('../../config/passport'),
+    passport = require('passport');
+    const requireLogin = passport.authenticate('local', { session: false });
+    const requireAuth = passport.authenticate('jwt', { session: false });
+    router.route('/users/login').post(requireLogin, login);
+    
 
 module.exports = function (app, config) {
     app.use('/api', router);//middleware that installs the router all routes will go below here in this loop only 
-    router.route('/users').get((req, res, next) => {
+    
+    router.route('/users').get(requireAuth, (req, res, next) => {
         logger.log('info', 'Get all users');
         var query = User.find()
             .sort(req.query.order)
@@ -35,7 +42,7 @@ module.exports = function (app, config) {
             });
     })
 
-
+/*
     router.route('/users/login').post((req, res, next) => {
         logger.log('info', '%s logging in', req.body.email);
         var email = req.body.email
@@ -44,6 +51,8 @@ module.exports = function (app, config) {
         var obj = { 'email': email, 'password': password };
         res.status(201).json(obj);
     });
+*/
+    router.route('/users/login').post(requireLogin, login);
 
     router.route('/users/:id').get((req, res, next) => {
         logger.log('info', 'Get user %s', req.params.id);
