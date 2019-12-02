@@ -14,12 +14,12 @@ export class DataServices {
                     credentials: 'same-origin',
                     headers: {
                         'Accept': 'application/json',
-                        'X-Requested-With': 'Fetch'
+                        'X-Requested-With': 'Fetch',
+                        'Authorization' : 'Bearer' + localStorage.getItem('aurelia_token')
                     }
                 })
                 .withInterceptor({
                     request(request) {
-                        'Authorization':'Bearer' + localStorage.getItem('aurelia_token');
                         console.log('Requesting ${request.method} ${request.url}');
                         return request;
                     }, 

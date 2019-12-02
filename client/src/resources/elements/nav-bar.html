@@ -30,6 +30,7 @@
                             placeholder="Password">
                     </div>
                     <button type="submit" click.trigger="login()" class="btn btn-primary mb-2">Confirm identity</button>
+                    <span style="margin-left: 20px;" show.bind="loginError">${loginError}</span>
                 </form>
             </div>    
         </div>
