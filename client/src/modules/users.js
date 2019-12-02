@@ -21,7 +21,7 @@ export class Users {
         }
     }
     async save() {
-        if (this.user && this.user.firstName && this.user.lastName
+        if (this.user && this.user.fname && this.user.lname
             && this.user.email && this.user.password) {
             await this.users.saveUser(this.user);
         }
