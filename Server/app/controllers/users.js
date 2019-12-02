@@ -8,7 +8,8 @@ var express = require('express'),
     passport = require('passport');
     const requireLogin = passport.authenticate('local', { session: false });
     const requireAuth = passport.authenticate('jwt', { session: false });
-    router.route('/users/login').post(requireLogin, login);
+    router.route('/users/login').post(requireLogin, login);  
+    
     
 
 module.exports = function (app, config) {

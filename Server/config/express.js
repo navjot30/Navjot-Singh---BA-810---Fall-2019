@@ -4,8 +4,11 @@ const logger = require('./logger');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var fs = require('fs');
+const cors = require('cors');
 
 module.exports = function (app, config) {
+    
+    app.use(cors({origin: 'http://localhost:9000'}));
     logger.log('info', "Loading Mongoose functionality");
     mongoose.Promise = require('bluebird');
     mongoose.connect(config.db);
