@@ -8,7 +8,7 @@ var express = require('express'),
     passport = require('passport');
     const requireLogin = passport.authenticate('local', { session: false });
     const requireAuth = passport.authenticate('jwt', { session: false });
-    router.route('/users/login').post(requireLogin, login);  
+    
     
     
 
@@ -43,16 +43,6 @@ module.exports = function (app, config) {
             });
     })
 
-/*
-    router.route('/users/login').post((req, res, next) => {
-        logger.log('info', '%s logging in', req.body.email);
-        var email = req.body.email
-        var password = req.body.password;
-
-        var obj = { 'email': email, 'password': password };
-        res.status(201).json(obj);
-    });
-*/
     router.route('/users/login').post(requireLogin, login);
 
     router.route('/users/:id').get((req, res, next) => {

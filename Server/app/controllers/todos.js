@@ -16,14 +16,14 @@ module.exports = function (app, config) {
         res.status(201).json({ message: 'Created user' });
     });
 
-    router.route('/users/login').post((req, res, next) => {
-        logger.log('info', '%s logging in', req.body.email);
-        var email = req.body.email
-        var password = req.body.password;
+    // router.route('/users/login').post((req, res, next) => {
+    //     logger.log('info', '%s logging in', req.body.email);
+    //     var email = req.body.email
+    //     var password = req.body.password;
 
-        var obj = { 'email': email, 'password': password };
-        res.status(201).json(obj);
-    });
+    //     var obj = { 'email': email, 'password': password };
+    //     res.status(201).json(obj);
+    // });
 
 
     router.route('/todos/:id').get((req, res, next) => {
