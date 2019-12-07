@@ -9,12 +9,8 @@ const passport = require('passport'),
 var localOptions = { usernameField: 'email' };
 
 var localLogin = new localStrategy(localOptions, function (email, password, next) {
-    console.log('HERE')
-    console.log(password)
-    console.log(email);
     User.findOne({ email: email }).exec()
         .then(function (user) {
-            console.log(user)
             if (!user) {
                 return next({ status: "404", message: "Email not found." });
             } else {
@@ -54,23 +50,21 @@ login = function (req, res, next) {
 };
 
 var jwtOptions = {
-    jwtFromRequest: extractJwt. fromAuthHeaderAsBearerToken(),
+    jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: config.secret
-  };
-  
-  var jwtLogin = new jwtStrategy(jwtOptions, function(payload, next){
-    User.findById(payload._id).exec()
-    .then(function(user){
-      if (user){
-        return next(null, user);
-      } else {
-        return next(null, false);
-      }
-    })
-    .catch(function(err){ return next(err);});
-  });
-  
-passport.use(jwtLogin);
-  
+};
 
+var jwtLogin = new jwtStrategy(jwtOptions, function (payload, next) {
+    User.findById(payload._id).exec()
+        .then(function (user) {
+            if (user) {
+                return next(null, user);
+            } else {
+                return next(null, false);
+            }
+        })
+        .catch(function (err) { return next(err); });
+});
+
+passport.use(jwtLogin);
 passport.use(localLogin);

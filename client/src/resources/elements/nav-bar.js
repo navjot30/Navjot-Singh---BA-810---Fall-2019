@@ -24,8 +24,8 @@ export class NavBar {
     login() {
         //   console.log(this.email);
         //   console.log(this.password);
-        //  this.authenticated = true;
-        //  this.router.navigate('home');
+        //this.authenticated = true;
+        //this.router.navigate('home');
         return this.auth.login(this.email, this.password)
             .then(response => {
                 this.userObj = response.user;
@@ -53,5 +53,9 @@ export class NavBar {
     }
     bind() {
         this.authenticated = this.auth.isAuthenticated();
+    }
+
+    registerUser(){
+        this.router.navigate('users')
     }
 }
