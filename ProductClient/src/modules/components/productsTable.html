@@ -1,0 +1,35 @@
+<template>
+    <button class="btn btn-primary" click.trigger="newProduct()" style="margin-bottom:10px;">Create Product</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="3">
+                    <div class="checkbox leftMargin"><label><input checked.bind="isCheckedCompleted" type="checkbox">
+                            Filter out Out of Stock Products</label></div>
+                </th>
+            </tr>
+            <tr>
+                 <th scope="col">Product</th>
+                 <th scope="col">Product Detail</th>
+                <th scope="col">Status</th>
+                <th scope="col">Expiry Date</th>
+                <th scope="col">Manufactured Date</th>
+                        <th></th>                   
+            </tr>
+        </thead>
+        <tbody>
+            <tr repeat.for="product of product.productsArray | filterProducts:isCheckedCompleted">
+                <td scope="row" click.delegate="editProduct(product)">${product.product}</td>
+                <td><select change.delegate="updateProduct(product)" value.bind="product.status" class="form-control"
+                        id="productStatus">
+                        <option repeat.for="status of statuses" value.bind="status">${status}</option>
+                    </select></td>
+                <td>${product.expiryDate | dateFormat}</td>
+                <td>${product.manufacturedDate | dateFormat}</td>
+                <td>
+                    <button click.trigger="deleteProduct(product)" type="button" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>

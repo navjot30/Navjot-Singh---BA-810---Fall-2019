@@ -1,0 +1,28 @@
+<template>
+    <form>
+        <div class="form-group">
+            <label for="productInput">Product</label>
+            <input value.bind="product.selectedProduct.product" type="text" class="form-control" placeholder="Product title">
+        </div>
+                  <div class ="form-group">
+                <label for="productDetail">Product Detail</label>
+                <textarea value.bind="product.selectedProduct.detail" class="form-control" id="productDetail" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="productStatus">Status</label>
+                <select value.bind="product.selectedProduct.status" class="form-control" id="productStatus">
+                    <option repeat.for="status of statuses" model.bind="status">${status}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="productStatus">Expiry Date</label>
+                <flat-picker controlid="startdate" value.bind="product.selectedProduct.expiryDate"></flat-picker>
+            </div>
+            <div class="form-group">
+                <label for="productStatus">Manufactured Date</label>
+                <flat-picker controlid="startdate" value.bind="product.selectedProduct.manufacturedDate"></flat-picker>
+            </div>
+            <button class="btn btn-primary" click.trigger="saveProduct()">Save</button>
+            <button class="btn btn-primary" click.trigger="Cancel()">Cancel</button>
+    </form>
+</template>
