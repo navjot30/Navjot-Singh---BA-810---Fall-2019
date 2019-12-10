@@ -1,8 +1,9 @@
 
-module.exports = app;
+
 
 var express = require('express');
 var config = require('./config/config');
+var logger = require('./config/logger');
 var app = express();
 var port = config.port|| 3000
 require('./config/express')(app, config);

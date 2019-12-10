@@ -1,4 +1,5 @@
 import { inject } from 'aurelia-framework';
+import { Router } from 'aurelia-router';
 import { Todo } from "../resources/data/todo-object";
 
 @inject(Todo)

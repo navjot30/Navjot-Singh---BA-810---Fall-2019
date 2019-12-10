@@ -3,7 +3,7 @@ import {AuthorizeStep} from 'aurelia-auth';
 export class App {
   configureRouter(config, router) {
     this.router = router;
-    config.addPipelineStep('authorize', AuthorizeStep); 
+     config.addPipelineStep('authorize', AuthorizeStep); 
     config.title = 'Things ToDo';
     config.map([
       {
@@ -18,7 +18,7 @@ export class App {
         name: 'users',
         moduleId: 'modules/users',
         title: 'Users',
-        auth: true
+        //auth: true
 
       },
       {

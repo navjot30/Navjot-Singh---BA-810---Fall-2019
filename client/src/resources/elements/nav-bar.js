@@ -1,17 +1,16 @@
-import { inject } from 'aurelia-framework';
-import { Router } from 'aurelia-router';
-import { AuthService } from 'aurelia-auth';
+import {inject} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
+import {AuthService} from 'aurelia-auth';
 
-@inject(Router, AuthService)
+@inject(Router,AuthService)
 export class NavBar {
-    constructor(router, auth) {
-        this.authenticated = false;
+    constructor(router,auth) {
+        //this.authenticated = false;
         this.router = router;
         this.auth = auth;
-        this.loginError = '';
+        this.loginError = "";
         this.email = "";
         this.password = "";
-
     }
 
     attached() {
@@ -22,10 +21,6 @@ export class NavBar {
     }
 
     login() {
-        //   console.log(this.email);
-        //   console.log(this.password);
-        //this.authenticated = true;
-        //this.router.navigate('home');
         return this.auth.login(this.email, this.password)
             .then(response => {
                 this.userObj = response.user;
@@ -39,23 +34,23 @@ export class NavBar {
                 this.authenticated = false;
                 this.loginError = "Invalid credentials.";
             });
+    };
 
-    }
-   
-    
+
     logout() {
-        // this.authenticated = false;
-        //  this.router.navigate('landing');
         this.auth.logout();
         sessionStorage.removeItem('userObj');
         this.authenticated = this.auth.isAuthenticated();
 
     }
+
     bind() {
         this.authenticated = this.auth.isAuthenticated();
     }
 
-    registerUser(){
-        this.router.navigate('users')
+    openRegisterNewUser(){
+        this.router.navigate('users');
     }
+
+
 }
