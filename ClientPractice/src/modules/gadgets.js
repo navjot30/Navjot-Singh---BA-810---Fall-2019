@@ -5,7 +5,7 @@ import { Gadget } from "../resources/data/gadget-object";
 export class Gadgets {
     constructor(gadget) {
         this.gadget = gadget;
-        //this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
+        // test this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
         this.statuses = ['Gadget', 'In Process', 'Completed'];
         this.isCheckedCompleted = true;
         this.showForm = false;

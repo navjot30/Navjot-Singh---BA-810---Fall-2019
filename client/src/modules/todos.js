@@ -1,78 +1,47 @@
-'use strict'
-var express = require('express'),
-    router = express.Router(),
-    logger = require('../../config/logger'),
-    mongoose = require('mongoose'),
-    Gadget = mongoose.model('Gadgets');
+import { inject } from 'aurelia-framework';
+import { Todo } from "../resources/data/todo-object";
 
-module.exports = function (app, config) {
-    app.use('/api', router);
+@inject(Todo)
+export class Todos {
+    constructor(todo) {
+        this.todo = todo;
+        this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
+        this.statuses = ['Todo', 'In Process', 'Completed'];
+        this.isCheckedCompleted = true;
+        // this.showForm = false;
+    }
+    async attached() {
+        await this.getTodos();
+    }
 
-    router.route('/gadgets').get((req, res, next) => {
-        logger.log('info', 'Get all gadgets');
-        var query = Gadget.find()
-            .sort(req.query.order)
-            .exec()
-            .then(result => {
-                if (result && result.length) {
-                    res.status(200).json(result);
-                } else {
-                    res.status(404).json({ message: "No gadgets" });
-                }
-            })
-            .catch(err => {
-                return next(err);
-            });
-    });
+    async getTodos() {
+        await this.todo.getTodos(this.userObj._id);
+        this.showForm = false;
+    }
 
-    router.route('/gadgets/:id').get((req, res, next) => {
-        logger.log('info', 'Get gadget %s', req.params.id);
-        Gadget.findById(req.params.id)
-            .then(todo => {
-                if (todo) {
-                    res.status(200).json(todo);
-                } else {
-                    res.status(404).json({ message: "No gadget found" });
-                }
-            })
-            .catch(error => {
-                return next(error);
-            });
-    });
+    updateTodo(todo) {
+        this.todo.selectedTodo = todo;
+        this.saveTodo();
+    }
+    newTodo() {
+        this.todo.newTodo(this.userObj._id);
+        this.showForm = true;
+    }
+    editTodo(todo) {
+        this.todo.selectedTodo = todo;
+        this.showForm = true;
+    }
+    async saveTodo() {
+        await this.todo.saveTodo()
+        this.getTodos();
+    }
+    async deleteTodo(todo) {
+        await this.todo.deleteTodo(todo._id);
+        this.getTodos();
+    }
 
-    router.route('/gadgets/:id').put((req, res, next) => {
-        logger.log('info', 'Get gadget %s', req.params.id);
-        Gadget.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, multi: false })
-            .then(gadget => {
-                res.status(200).json(gadget);
-            })
-            .catch(error => {
-                return next(error);
-            });
-    });
+    Cancel() {
+        this.showForm = false;
+    }
 
-    router.route('/gadgets').post((req, res, next) => {
-        logger.log('info', 'Create gadget');
-        var gadget = new Gadget(req.body);
-        gadget.save()
-            .then(result => {
-                res.status(201).json(result);
-            })
-            .catch(err => {
-                return next(err);
-            });
-    });
-
-    router.route('/gadgets/:id').delete((req, res, next) => {
-        logger.log('info', 'Delete gadget ' + req.params.id);
-        Gadget.remove({ _id: req.params.id })
-            .then(todo => {
-                res.status(200).json({ msg: "Gadget Deleted" });
-            })
-            .catch(error => {
-                return next(error);
-            });
-
-    });
-
-};
+}
