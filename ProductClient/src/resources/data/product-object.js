@@ -10,10 +10,12 @@ constructor(data) {
         this.selectedProduct = {};
         this.selectedProduct.product = "";
         this.selectedProduct.detail = "";
+        this.selectedProduct.price = "";
+        this.selectedProduct.quantity = "";
         this.selectedProduct.expiryDate = new Date();
         this.selectedProduct.manufacturedDate = new Date();
         this.selectedProduct.status = "Product";
-        this.selectedProduct.userId = id;
+        this.selectedProduct.userid = id;
       }
         async saveProduct() {
         let serverResponse;

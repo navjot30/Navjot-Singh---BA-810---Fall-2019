@@ -1,4 +1,5 @@
 import { inject } from 'aurelia-framework';
+import { Router } from 'aurelia-router';
 import { Product } from "../resources/data/product-object";
 
 @inject(Product)
@@ -7,7 +8,7 @@ export class Products {
         this.product = product;
         this.userObj = JSON.parse(sessionStorage.getItem('userObj'));
         this.statuses = ['Available', 'Out of stock', 'Arriving soon'];
-        this.isCheckedCompleted = false;
+        this.isCheckedCompleted = true;
         // this.showForm = false;
     }
     async attached() {

@@ -11,6 +11,8 @@
             <tr>
                  <th scope="col">Product</th>
                  <th scope="col">Product Detail</th>
+                 <th scope="col">Price</th>
+                 <th scope="col">Quantity</th>
                 <th scope="col">Status</th>
                 <th scope="col">Expiry Date</th>
                 <th scope="col">Manufactured Date</th>
@@ -20,8 +22,11 @@
         <tbody>
             <tr repeat.for="product of product.productsArray | filterProducts:isCheckedCompleted">
                 <td scope="row" click.delegate="editProduct(product)">${product.product}</td>
+                <td scope="row" click.delegate="editProduct(product)">${product.detail}</td>
+                <td scope="row" click.delegate="editProduct(product)">${product.price}</td>
+                <td scope="row" click.delegate="editProduct(product)">${product.quantity}</td>
                 <td><select change.delegate="updateProduct(product)" value.bind="product.status" class="form-control"
-                        id="productStatus">
+                        id="status">
                         <option repeat.for="status of statuses" value.bind="status">${status}</option>
                     </select></td>
                 <td>${product.expiryDate | dateFormat}</td>

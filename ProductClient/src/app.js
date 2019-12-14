@@ -18,7 +18,7 @@ export class App {
         name: 'users',
         moduleId: 'modules/users',
         title: 'Users',
-        auth: true
+        //auth: true
 
       },
       {

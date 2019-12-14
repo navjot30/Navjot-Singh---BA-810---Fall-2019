@@ -1,25 +1,35 @@
 <template>
     <form>
         <div class="form-group">
-            <label for="productInput">Product</label>
+            <label for="product">Product</label>
             <input value.bind="product.selectedProduct.product" type="text" class="form-control" placeholder="Product title">
         </div>
                   <div class ="form-group">
-                <label for="productDetail">Product Detail</label>
-                <textarea value.bind="product.selectedProduct.detail" class="form-control" id="productDetail" rows="5"></textarea>
+                <label for="detail">Product Detail</label>
+                <textarea value.bind="product.selectedProduct.detail" class="form-control" id="detail" rows="5"></textarea>
             </div>
+        </div>
+        <div class ="form-group">
+      <label for="price">Price</label>
+      <textarea value.bind="product.selectedProduct.price" class="form-control" id="price" rows="5"></textarea>
+      </div>
+
+      <div class ="form-group">
+        <label for="quantity">Quantity</label>
+        <textarea value.bind="product.selectedProduct.quantity" class="form-control" id="quantity" rows="5"></textarea>
+        </div>
             <div class="form-group">
-                <label for="productStatus">Status</label>
-                <select value.bind="product.selectedProduct.status" class="form-control" id="productStatus">
+                <label for="status">Status</label>
+                <select value.bind="product.selectedProduct.status" class="form-control" id="status">
                     <option repeat.for="status of statuses" model.bind="status">${status}</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="productStatus">Expiry Date</label>
+                <label for="expiryDate">Expiry Date</label>
                 <flat-picker controlid="startdate" value.bind="product.selectedProduct.expiryDate"></flat-picker>
             </div>
             <div class="form-group">
-                <label for="productStatus">Manufactured Date</label>
+                <label for="manufacturedDate">Manufactured Date</label>
                 <flat-picker controlid="startdate" value.bind="product.selectedProduct.manufacturedDate"></flat-picker>
             </div>
             <button class="btn btn-primary" click.trigger="saveProduct()">Save</button>

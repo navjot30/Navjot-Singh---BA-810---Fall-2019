@@ -5,10 +5,10 @@ import { AuthService } from 'aurelia-auth';
 @inject(Router, AuthService)
 export class NavBar {
     constructor(router, auth) {
-        this.authenticated = false;
+        //this.authenticated = false;
         this.router = router;
         this.auth = auth;
-        this.loginError = '';
+        this.loginError = "";
         this.email = "";
         this.password = "";
 
@@ -40,7 +40,7 @@ export class NavBar {
                 this.loginError = "Invalid credentials.";
             });
 
-    }
+    };
    
     
     logout() {
@@ -55,7 +55,7 @@ export class NavBar {
         this.authenticated = this.auth.isAuthenticated();
     }
 
-    registerUser(){
-        this.router.navigate('users')
+    openRegisterNewUser(){
+        this.router.navigate('users');
     }
 }

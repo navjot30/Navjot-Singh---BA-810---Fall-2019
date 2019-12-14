@@ -1,10 +1,10 @@
 export class FilterProductsValueConverter {
     toView(products, nofilterProducts) {
       if (!products) return;
-      if (nofilterProduct) return products;
+      if (!nofilterProducts) return products;
       let filteredProducts = [];
       products.forEach(product => {
-        if (product.status !== 'Completed') filteredProducts.push(product);
+        if (product.status !== 'Out of stock') filteredProducts.push(product);
       });
       return filteredProducts;
     }
